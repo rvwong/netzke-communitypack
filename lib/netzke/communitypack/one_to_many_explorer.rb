@@ -6,6 +6,9 @@ module Netzke
     # Accepts the following config options:
     # * foreign_key (required) - foreign key that defines the one-to-many relation
     #
+    #   primaryKey - sometimes the primary key that is passed from the container to the collection
+    #                to represent the foreign_key is not always "id" its a RAILS standard, but sometimes
+    #                you may be working with a legacy DB
     # Override :container and :collection components if you want to customize the corresponding grids, e.g.:
     #
     #     component :container do |c|
@@ -30,6 +33,7 @@ module Netzke
 
       def configure(c)
         c.items = [:container, :collection]
+        c.primaryKey = "id"
         super
       end
 
